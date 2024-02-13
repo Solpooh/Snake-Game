@@ -36,15 +36,20 @@ public class GamePanel extends JPanel implements ActionListener {
         timer.start();
     }
     public void paintComponent(Graphics g) {
-
+        super.paintComponent(g);
+        draw(g);
     }
     // 그리드 형식의 그리기
     public void draw(Graphics g) {
-            // 격자선 그리기
-
+            // 격자선 그리기 for 가시성
+        for (int i = 0; i < SCREEN_HEIGHT/UNIT_SIZE; i++) {
+            g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
+            g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDTH, i * UNIT_SIZE);
+        }
 
             // 사과의 크기
-
+        g.setColor(Color.red);
+        g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
 
             // 뱀의 몸 그리기
                 // 뱀의 머리 부분
@@ -57,7 +62,8 @@ public class GamePanel extends JPanel implements ActionListener {
     }
     // 사과 좌표 생성
     public void newApple() {
-
+        appleX = random.nextInt((int)(SCREEN_WIDTH/UNIT_SIZE))*UNIT_SIZE;
+        appleY = random.nextInt((int)(SCREEN_HEIGHT/UNIT_SIZE))*UNIT_SIZE;
     }
     // 뱀 움직이기
     public void move() {
