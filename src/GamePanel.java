@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.Random;
 
 public class GamePanel extends JPanel implements ActionListener {
-
+    // 화면 배치, 필요한 변수 선언
     static final int SCREEN_WIDTH = 600;
     static final int SCREEN_HEIGHT = 600;
     static final int UNIT_SIZE = 30;
@@ -21,7 +21,12 @@ public class GamePanel extends JPanel implements ActionListener {
     Timer timer;
     Random random;
     GamePanel() {
-
+        random = new Random();
+        this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+        this.setBackground(Color.black);
+        this.setFocusable(true);
+        this.addKeyListener(new MyKeyAdapter());
+        startGame();
     }
     // 게임 시작 방법
     public void startGame() {
@@ -56,6 +61,9 @@ public class GamePanel extends JPanel implements ActionListener {
 
     }
     // 사과 잡기
+    public void checkApple() {
+
+    }
 
     // 충돌 설정
     public void checkCollisions() {
@@ -83,6 +91,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     }
 
+    // 방향키를 누를 때 발생하는 이벤트
     public class MyKeyAdapter extends KeyAdapter {
         @Override
         public void keyPressed(KeyEvent e) {
