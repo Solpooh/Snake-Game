@@ -41,27 +41,29 @@ public class GamePanel extends JPanel implements ActionListener {
     }
     // 그리드 형식의 그리기
     public void draw(Graphics g) {
+        if (running) {
             // 격자선 그리기 for 가시성
-        for (int i = 0; i < SCREEN_HEIGHT/UNIT_SIZE; i++) {
-            g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
-            g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDTH, i * UNIT_SIZE);
-        }
+            for (int i = 0; i < SCREEN_HEIGHT / UNIT_SIZE; i++) {
+                g.drawLine(i * UNIT_SIZE, 0, i * UNIT_SIZE, SCREEN_HEIGHT);
+                g.drawLine(0, i * UNIT_SIZE, SCREEN_WIDTH, i * UNIT_SIZE);
+            }
 
             // 사과의 크기
-        g.setColor(Color.red);
-        g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
+            g.setColor(Color.red);
+            g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
 
             // 뱀의 몸 그리기
-        for (int i = 0; i < bodyParts; i++) {
-            // 뱀의 머리 부분
-            if (i == 0) {
-                g.setColor(Color.green);
-                g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
-            } else {
-                g.setColor(new Color(45, 180, 0));
-                g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+            for (int i = 0; i < bodyParts; i++) {
+                // 뱀의 머리 부분
+                if (i == 0) {
+                    g.setColor(Color.green);
+                    g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+                } else {
+                    g.setColor(new Color(45, 180, 0));
+                    g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+                }
+                // 화면에 Score 표시
             }
-            // 화면에 Score 표시
         }
     }
     // 사과 좌표 생성
