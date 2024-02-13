@@ -99,14 +99,30 @@ public class GamePanel extends JPanel implements ActionListener {
     // 충돌 설정
     public void checkCollisions() {
         // 머리가 몸체에 충돌하는지 확인
-
+        for (int i = bodyParts; i > 0; i--) {
+            if ((x[0] == x[i]) && (y[0] == y[i])) {
+                running = false;
+            }
+        }
         // 머리가 왼쪽 경계에 닿는지 확인
-
+        if (x[0] < 0) {
+            running = false;
+        }
         // 머리가 오른쪽 경계에 닿는지 확인
-
+        if (x[0] > SCREEN_WIDTH) {
+            running = false;
+        }
         // 머리가 위쪽 테두리에 닿는지 확인
-
+        if (y[0] < 0) {
+            running = false;
+        }
         // 머리가 아래쪽 테두리에 닿는지 확인
+        if (y[0] > SCREEN_HEIGHT) {
+            running = false;
+        }
+        if (!running) {
+            timer.stop();
+        }
 
     }
     public void gameOver(Graphics g) {
@@ -119,6 +135,12 @@ public class GamePanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // 게임이 실행중이면
+        if (running) {
+            move();
+            checkApple();
+            checkCollisions();
+        }
+        repaint();
 
     }
 
