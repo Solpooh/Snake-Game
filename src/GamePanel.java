@@ -65,6 +65,9 @@ public class GamePanel extends JPanel implements ActionListener {
                 // 화면에 Score 표시
             }
         }
+        else {
+            gameOver(g);
+        }
     }
     // 사과 좌표 생성
     public void newApple() {
@@ -134,9 +137,13 @@ public class GamePanel extends JPanel implements ActionListener {
     }
     public void gameOver(Graphics g) {
         // Game Over 텍스트 표시
-
+        g.setColor(Color.red);
+        g.setFont( new Font("Ink Free", Font.BOLD, 75));
+        FontMetrics metrics = getFontMetrics(g.getFont());
+        g.drawString("Game Over", (SCREEN_WIDTH - metrics.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
 
         // 점수도 같이 표시
+
 
     }
     @Override
