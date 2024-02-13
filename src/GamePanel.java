@@ -30,7 +30,10 @@ public class GamePanel extends JPanel implements ActionListener {
     }
     // 게임 시작 방법
     public void startGame() {
-
+        newApple();
+        running = true;
+        timer = new Timer(DELAY, this);
+        timer.start();
     }
     public void paintComponent(Graphics g) {
 
