@@ -1,1 +1,1 @@
-Java Swing 
+Java Swing AWT
